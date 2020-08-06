@@ -42,10 +42,10 @@ find . -printf '%s\t%p\n' | sort -n
 
 Explaining the command passed to `printf`:
 
-- `%s`: The file size in bytes.
-- \t: Separate the file size and name with a tab.
-- `%p`: The file name. 
-- \n: Put each file on its own line.
+- `%s` - The file size in bytes.
+- `\t` - Separate the file size and name with a tab.
+- `%p` - The file name. 
+- `\n` - Put each file on its own line.
 
 To force `sort` to sort based on numbers instead of alphabetically, use the -n flag.
 
@@ -57,11 +57,11 @@ find . -printf '%T+\t%p\n' | sort -n
 
 Explaining the command passed to `printf`:
 
-- `%T`: The file's last modification time. Change this to `%A` for access time ([not always supported](https://www.linuxquestions.org/questions/linux-software-2/what-is-noatime-how-can-i-mount-a-partition-with-noatime-393617/))
-- `+`: Format for the time. `+` means the date and time separated by a +. Change this to `@` if you are worried about the date+time not sorting correctly.
-- \t: Separate the time and name with a tab.
-- `%p`: The file name. 
-- \n: Put each file on its own line.
+- `%T` - The file's last modification time. Change this to `%A` for access time ([not always supported](https://www.linuxquestions.org/questions/linux-software-2/what-is-noatime-how-can-i-mount-a-partition-with-noatime-393617/))
+- `+` - Format for the time. `+` means the date and time separated by a +. Change this to `@` if you are worried about the date+time not sorting correctly.
+- `\t` - Separate the time and name with a tab.
+- `%p` - The file name. 
+- `\n` - Put each file on its own line.
 
 To force `sort` to sort based on numbers instead of alphabetically, use the -n flag.
 
