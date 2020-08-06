@@ -37,7 +37,7 @@ Using `-iname` instead will make it case insensitive.
 `find` provides an option that allows you to format the output using a very rich set of directives. By printing one file per line and starting the line with the file size in bytes, the result is easily sortable.
 
 ```
-find . -name '*.txt' -printf '%s\t%p\n' | sort -n
+find . -printf '%s\t%p\n' | sort -n
 ```
 
 Explaining the command passed to `printf`:
@@ -52,7 +52,7 @@ To force `sort` to sort based on numbers instead of alphabetically, use the -n f
 ### Sort the files based on access of modification time
 
 ```
-find . -name 'US*' -printf '%T+\t%p\n' | sort -n
+find . -printf '%T+\t%p\n' | sort -n
 ```
 
 Explaining the command passed to `printf`:
