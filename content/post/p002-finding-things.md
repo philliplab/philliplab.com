@@ -27,7 +27,7 @@ This post describes how to use find to:
 The base find command will just list all files in the current folder and all its subfolders. By using the -name option, you can restrict your search.
 
 ```
-find . -name *.txt
+find . -name '*.txt'
 ```
 
 Using `-iname` instead will make it case insensitive.
