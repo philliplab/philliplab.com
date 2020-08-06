@@ -17,6 +17,10 @@ One might expect the syntax to look like:
 [i+5 for i in [2*j for j in range(10)]]
 ```
 
+Output:
+
+    [0, 0, 1, 2, 2, 4, 3, 6, 4, 8]
+
 However, this comprehension is similar to two `for` loops that are executed sequentially:
 
 ```
@@ -25,27 +29,42 @@ for j in range(10):
     result[j] = j*2
 for i in range(len(result)):
     result[i] += 5
+print (result)
 ```
 
+Output:
+
+    [0, 0, 1, 2, 2, 4, 3, 6, 4, 8]
+    
 ### A right way
 
 Nested `for` loops are useful for unpacking a list of tuples, for example:
 
 ```
 dat = [(i, 2*i) for i in range(5)]
-res = []
+result = []
 for i in dat:
     for j in i:
-        res.append(j)
+        result.append(j)
+print(result)
 ```
+
+Output:
+
+    [0, 0, 1, 2, 2, 4, 3, 6, 4, 8]
 
 This is identical to the comprehension:
 
 ```
-res = [j for i in dat for j in i]
+result = [j for i in dat for j in i]
+print(result)
 ```
 
-Note that there are no inner set of square brackets. When two `for` keywords follow each other inside a list comprehension with no intervening square brackets, they are equivalent to nesting the loop represented by the second `for` keyword under the loop represented by the first `for` keyword.
+Output:
+
+    [0, 0, 1, 2, 2, 4, 3, 6, 4, 8]
+    
+Note that there is no inner set of square brackets. When two `for` keywords follow each other inside a list comprehension with no intervening square brackets, they are equivalent to nesting the loop represented by the second `for` keyword under the loop represented by the first `for` keyword.
 
 ### More information
 
