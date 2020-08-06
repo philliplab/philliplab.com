@@ -4,7 +4,7 @@ date: 2020-08-06
 description: "Understanding nested for loops in list comprehensions"
 type: "post"
 tags: [Python]
-draft: true
+draft: false
 ---
 
 Python list comprehensions provide a syntax for nested `for` loops. 
