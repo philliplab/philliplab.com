@@ -1,13 +1,13 @@
 ---
-title: "Indexing Pandas"
+title: "Indexing in Python"
 date: 2020-08-07
-description: "Trying to make sense of indexing in Pandas"
+description: "A systematic overview of the indexing strategies of base python, NumPy and Pandas"
 type: "post"
 tags: [Python]
 draft: true
 ---
 
-There are numerous ways to index in Pandas. This can lead to some confusion when starting to learn Pandas (and NumPy). This post aims to give a high level overview of the different indexing strategies with later posts exploring the details of each.
+There are numerous ways to index in Pandas. This can lead to some confusion when starting to learn Pandas (and NumPy). This post aims to give a high level overview of the different indexing strategies in python, NumPy and Pandas. Future posts will explore the details of each.
 
 ### Standard Python
 
