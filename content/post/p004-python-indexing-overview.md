@@ -61,11 +61,6 @@ It is not as convenient for selecting columns:
 [j[2] for j in dat]
 ```
 
-Note:
-
-- The `start:stop:step` notation creates a slice objects.
-- There are alternative indexing strategies, such as indexing with a tuple of integers. This will be discussed in future posts.
-
 ### NumPy
 
 NumPy introduces the array, and ways of indexing the array that is more convenient for data analysis. While everything discussed here extends elegantly into higher dimensions, I will restrict this post to two dimensional data.
@@ -87,7 +82,9 @@ The `1::2` part of the index selects out every second row starting at the second
 
 Thus NumPy allows you to specify indexing details for the different dimensions by separating them with a comma inside the square brackets.
 
-Note: Just as for standard python, the indexing is much more flexible and powerful than just this simple example. So if you experience strange behaviour, your syntax probably match one of the other indexing strategies available for NumPy.
+Note:
+- The `start:stop:step` notation creates a slice objects.
+- There are alternative indexing strategies, such as indexing with a tuple of integers instead of slice objects - which has different syntax.
 
 ### Pandas
 
@@ -128,7 +125,22 @@ Pandas supports many other indexing strategies, which will be discussed later.
 
 ### Summary
 
+This post outlines a very simple structure relating indexing strategies in Pandas, NumPy and standard python to each other. In order to create such a simplified overview, it ignored many of the features, a few notable ommissions below:
 
+- You can use comparison operators to generate Boolean arrays and index with these arrays.
+- In Pandas, you can index without using the .loc or .iloc suffixes - the behaviour of this syntax is complicated.
+- In Pandas, you can have a hierarchy of labels. (MultiIndex)
+- Fancy Indexing: Indexing with arrays of integers specifying locations.
+
+Hopefully, future posts will explore these topics.
+
+### More Information
+
+[Data School](https://www.youtube.com/watch?v=tcRGa2soc-c)
+
+[PDSH: NumPy Basics](https://jakevdp.github.io/PythonDataScienceHandbook/02.02-the-basics-of-numpy-arrays.html)
+
+[PDSH: Pandas Indexing](https://jakevdp.github.io/PythonDataScienceHandbook/03.02-data-indexing-and-selection.html)
 
 ### Pandas
 
