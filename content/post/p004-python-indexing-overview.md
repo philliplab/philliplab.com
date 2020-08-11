@@ -7,7 +7,13 @@ tags: [Python]
 draft: true
 ---
 
-There are numerous ways to index in Pandas. This can lead to some confusion when starting to learn Pandas (and NumPy). This post aims to give a high level overview of the different indexing strategies in python, NumPy and Pandas. Future posts will explore the details of each.
+There are numerous ways to index in Pandas. This can lead to some confusion when starting to learn Pandas (and NumPy). This post aims to give a highly simplified strucure for thinking about indexing in Python, NumPy and Pandas:
+
+- Standard python provides convenient indexing for one dimensional datasets.
+- NumPy extends this syntax to higher dimensions.
+- Pandas allows you to attach custom labels to your data and index using these labels.
+
+Understanding this structure should hopefully allow you to learn about the rich sets of index-related features without getting too lost.
 
 ### Standard Python
 
@@ -115,6 +121,8 @@ dat.loc['2005']
 ```
 
 *Pay attention to the `.loc` suffix*
+
+By using `.iloc' you can access Pandas data objects using NumPy indexing syntax.
 
 Pandas supports many other indexing strategies, which will be discussed later.
 
