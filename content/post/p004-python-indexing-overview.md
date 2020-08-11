@@ -4,7 +4,7 @@ date: 2020-08-07
 description: "A systematic overview of the indexing strategies of base python, NumPy and Pandas"
 type: "post"
 tags: [Python]
-draft: true
+draft: false
 ---
 
 There are numerous ways to index (extract subsets of data) in Python, NumPy and Pandas, producing to some confusion when starting to learn about NumPy and Pandas. This post aims to give a highly simplified strucure for thinking about indexing:
