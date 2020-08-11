@@ -77,13 +77,48 @@ There are many convenient ways to index this array, including a straight forward
 dat[1::2, 1:3]
 ```
 
-The `1::2` part of the index selects out every second row (row 0 = the first row) starting at the second row. The `1:3` part selects out the second and 3rd columns (column 0 = the first column) of the dataset.
+The `1::2` part of the index selects out every second row starting at the second row (row 0 = the first row). The `1:3` part selects out the second and 3rd columns (column 0 = the first column) of the dataset.
 
-Thus NumPy allows you to specify indexing details for the different dimensions by separating them with a comma inside the square barckets.
+Thus NumPy allows you to specify indexing details for the different dimensions by separating them with a comma inside the square brackets.
 
-Warning: The indexing is much more flexible and powerful than just this simple example. So if you experience strange behaviour, your syntax probably match one of the other indexing strategies available for NumPy.
+Note: Just as for standard python, the indexing is much more flexible and powerful than just this simple example. So if you experience strange behaviour, your syntax probably match one of the other indexing strategies available for NumPy.
 
 ### Pandas
+
+While NumPy extends the standard Python indexing to multiple dimensions, Pandas adds a useful feature to indexing. It enables the specification of custom labels for rows and column, and the use of these labels when selecting data from the dataset.
+
+In general, indexing in NumPy requires that you know the location inside the dataset of the data that interests you. You need to know the row and column numbers that correspond to the subset of that data you want to extract. Pandas adds a layer of convenience allowing you to, for example, label each row with a date and then extract all rows with data from the year 2005:
+
+```
+timedeltas = pd.to_timedelta([150*i for i in range(10)], unit = 'D'))
+dat = pd.Series(np.random.random(10), 
+                index = pd.to_datetime('2003') + timedeltas)
+print(dat)
+```
+
+Output:
+
+    2003-01-01    0.284773
+    2003-05-31    0.645078
+    2003-10-28    0.747747
+    2004-03-26    0.722569
+    2004-08-23    0.639060
+    2005-01-20    0.883133
+    2005-06-19    0.554248
+    2005-11-16    0.140964
+    2006-04-15    0.896328
+    2006-09-12    0.614332
+    dtype: float64
+
+```
+dat.loc['2005']
+```
+
+*Pay attention to the `.loc` suffix*
+
+Pandas supports many other indexing strategies, which will be discussed later.
+
+### Summary
 
 
 
