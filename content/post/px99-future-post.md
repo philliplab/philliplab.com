@@ -38,3 +38,27 @@ For now, I believe the best ways to index are:
   - To specify a set of values from an index level, set the corresponding element for the corresponding tuple equal to a list that contains all the values of interest.
   - To select ALL values of an index level, set the corresponding element in the tuple equal to slice(None).
 - Are you sure that you are using .loc?
+
+
+
+Notes about [[MultiIndexes]] from LOS.
+
+MultiIndexes enables the addition of dimensions to Series and DataFrames by creating hierarchical index structures.
+
+A MultiIndex consists of multiple levels (each similar to a variable describing some group the observation belong to) and each level has a set of labels associated with it.
+
+Practically, MultiIndexes provide a convenient way to select subsets of the data based on different conditions placed specified for the various levels of the MultiIndex.
+
+Old waffling:
+
+Pandas allows you to add dimensions to Series and DataFrames by means of MultiIndexes.
+
+These objects create hierarchical index structures that allows you to annotate observations with labels for multiple grouping/categorization variables. These different grouping variables are called the levels of the index. For example, an index that tracks the collection date and collection location for each observation has 2 levels with names 'collection_date' and 'collection_location'. Each level will have labels:
+
+- collection_date: '2010-03-02', '2010-03-03', ...
+- collection_location: 'Houston', 'Vancouver', ...
+
+Hence the labels associated with the collection_date level of the MultiIndex are dates. Likewise, the labels associated with the collection_location level of the MultiIndex are city names.
+
+Such indexes allow you to easily perform queries such as: "Get all observations for Houston", or "Get all observations after 2010-05-01 for Vancouver and Toronto".
+
