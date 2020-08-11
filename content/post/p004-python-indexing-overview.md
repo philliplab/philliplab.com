@@ -1,6 +1,6 @@
 ---
 title: "Indexing in Python"
-date: 2020-08-07
+date: 2020-08-11
 description: "A systematic overview of the indexing strategies of base python, NumPy and Pandas"
 type: "post"
 tags: [Python]
