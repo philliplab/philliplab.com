@@ -35,18 +35,16 @@ print (dat[10::2])
 In data analysis one often works with 2-d dataset and want to select blocks of the dataset.
 
 ```
-dat = [[chr(i+90), i+10, i*2] for i in range(5)]
+dat = [[chr(i+80), i+10, i*2] for i in range(5)]
 ```
 
-Produces a dataset like: (without the headers)
+Produces a dataset like:
 
-| Letter | Number1 | Number2 |
-| -      | ---     | --      |
-| P      | 10      | 0       |
-| Q      | 11      | 2       |
-| R      | 12      | 4       |
-| S      | 13      | 6       |
-| T      | 14      | 8       |
+    [['P', 10, 0], 
+     ['Q', 11, 2], 
+     ['R', 12, 4], 
+     ['S', 13, 6], 
+     ['T', 14, 8]]
 
 The standard Python indexing allows you to easily select a row, or a few columns from a row: 
 
@@ -55,7 +53,7 @@ dat[2]
 dat[2][1:]
 ```
 
-It is not as convenient for selecting columns:
+However, it is not as convenient for selecting columns:
 
 ```
 [j[2] for j in dat]
