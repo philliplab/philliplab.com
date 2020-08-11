@@ -7,7 +7,7 @@ tags: [Python]
 draft: true
 ---
 
-There are numerous ways to index in Pandas. This can lead to some confusion when starting to learn Pandas (and NumPy). This post aims to give a highly simplified strucure for thinking about indexing in Python, NumPy and Pandas:
+There are numerous ways to index (extract subsets of data) in Python, NumPy and Pandas, producing to some confusion when starting to learn about NumPy and Pandas. This post aims to give a highly simplified strucure for thinking about indexing:
 
 - Standard python provides convenient indexing for one dimensional datasets.
 - NumPy extends this syntax to higher dimensions.
@@ -17,11 +17,11 @@ Understanding this structure should hopefully allow you to learn about the rich 
 
 ### Standard Python
 
-In normal Python, there is a convenient notation for indexing sequence objects (such as lists). This notation takes the form x[start:stop:step] where x is a sequence object (like a list). 
+Standard Python, provides a basic notation for indexing sequence objects (such as lists). This notation takes the form `x[start:stop:step]` where `x` is a sequence object (like a list). 
 
-- start is the index of the first element to extract (start = 0 selects the first element of the sequence object). Default is zero.
-- stop is the index of the last element to extract. Default is the last element in the sequence objects.
-- step is what size steps to take between start and stop. 1 (the default) will select every element. 2 will select every second element and so forth.
+- `start` is the index of the first element to extract (start = 0 selects the first element of the sequence object). Default is zero.
+- `stop` is the index of the last element to extract. Default is the last element in the sequence objects.
+- `step` is what size steps to take between start and stop. 1 (the default) will select every element. 2 will select every second element and so forth.
 
 This allows you to easily perform operations like: 
 
@@ -96,30 +96,19 @@ In general, indexing in NumPy requires that you know the location inside the dat
 timedeltas = pd.to_timedelta([150*i for i in range(10)], unit = 'D'))
 dat = pd.Series(np.random.random(10), 
                 index = pd.to_datetime('2003') + timedeltas)
-print(dat)
+print(dat.loc['2005'])
 ```
 
 Output:
 
-    2003-01-01    0.284773
-    2003-05-31    0.645078
-    2003-10-28    0.747747
-    2004-03-26    0.722569
-    2004-08-23    0.639060
     2005-01-20    0.883133
     2005-06-19    0.554248
     2005-11-16    0.140964
-    2006-04-15    0.896328
-    2006-09-12    0.614332
     dtype: float64
 
-```
-dat.loc['2005']
-```
+__Pay attention to the `.loc` suffix__
 
-*Pay attention to the `.loc` suffix*
-
-By using `.iloc' you can access Pandas data objects using NumPy indexing syntax.
+By using `.iloc` you can access Pandas data objects using NumPy indexing syntax.
 
 Pandas supports many other indexing strategies, which will be discussed later.
 
@@ -138,40 +127,9 @@ Hopefully, future posts will explore these topics.
 
 [Data School](https://www.youtube.com/watch?v=tcRGa2soc-c)
 
+[NumPy Indexing](https://numpy.org/doc/stable/reference/arrays.indexing.html)
+
 [PDSH: NumPy Basics](https://jakevdp.github.io/PythonDataScienceHandbook/02.02-the-basics-of-numpy-arrays.html)
 
 [PDSH: Pandas Indexing](https://jakevdp.github.io/PythonDataScienceHandbook/03.02-data-indexing-and-selection.html)
 
-### Pandas
-
-The following needs to be teased apart:
-
-- Standard Python vs NumPy Indexing vs Pandas Indexing
-- Using the labels in the index(es) (.loc)
-- Using integer locations (.iloc)
-- Using Boolean arrays or comparison operations (also .loc)
-
-### Standard Python vs NumPy vs Pandas Indexing
-
-### Using the labels in the index(ex)
-
-### Using Integer locations
-
-### Using Boolean arrays or comparison operations
-
-#### More details related to .loc Pandas indexing - move to different post.
-
-For now, I believe the best ways to index are:
-
-- Always use .loc[] or .query()
-- Really, always use .loc.
-- It seems like you can access MultiIndex levels (for rows) with .query as if they are normal columns.
-- : confuses .loc, so use slice(None) instead (1 exception, listed below).
-- The format for .loc is:
-  - 1 element that is a tuple for a Series object and 2 elements that are each tuples for a DataFrame
-  - Each element of the tuple corresponds with one level of the MultiIndex. In case of DataFrames, the elements of the first [0] tuple correspond with the row MultiIndex and the elements of the second [1] tuple corresponds with the column MultiIndex.
-  - For DataFrames, the second tuple can be replaced by : to select all columns.
-  - To specify a single value from an index level, set the corresponding element for the corresponding tuple equal to that value.
-  - To specify a set of values from an index level, set the corresponding element for the corresponding tuple equal to a list that contains all the values of interest.
-  - To select ALL values of an index level, set the corresponding element in the tuple equal to slice(None).
-- Are you sure that you are using .loc?
