@@ -11,7 +11,13 @@ There are numerous ways to index in Pandas. This can lead to some confusion when
 
 ### Standard Python
 
-In normal Python, there is a convenient notation for indexing sequence objects. This notation takes the form x[start:stop:step] where x is a sequence object (like a list). This allows you to easily perform operations like: 
+In normal Python, there is a convenient notation for indexing sequence objects (such as lists). This notation takes the form x[start:stop:step] where x is a sequence object (like a list). 
+
+- start is the index of the first element to extract (start = 0 selects the first element of the sequence object). Default is zero.
+- stop is the index of the last element to extract. Default is the last element in the sequence objects.
+- step is what size steps to take between start and stop. 1 (the default) will select every element. 2 will select every second element and so forth.
+
+This allows you to easily perform operations like: 
 
 "Retrieve every 2nd element starting from the 10th"
 
@@ -36,22 +42,27 @@ Produces a dataset like: (without the headers)
 | S      | 13      | 6       |
 | T      | 14      | 8       |
 
-The standard Python indexing allows you to easily select a row, and a few columns from a row: 
+The standard Python indexing allows you to easily select a row, or a few columns from a row: 
 
 ```
 dat[2]
 dat[2][1:]
 ```
 
-It is not a convenient for selecting columns:
+It is not as convenient for selecting columns:
 
 ```
 [j[2] for j in dat]
 ```
 
+Note:
+
+- The `start:stop:step` notation creates a slice objects.
+- There are alternative indexing strategies, such as indexing with a tuple of integers. This will be discussed in future posts.
+
 ### NumPy
 
-NumPy introduces the array, and ways of indexing the array what is convenient for data analysis. While everything discussed here extends elegantly into higher dimensions, I will restrict this post to two dimensional data.
+NumPy introduces the array, and ways of indexing the array that is more convenient for data analysis. While everything discussed here extends elegantly into higher dimensions, I will restrict this post to two dimensional data.
 
 ```
 import numpy as np
