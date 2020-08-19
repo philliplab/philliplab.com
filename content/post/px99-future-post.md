@@ -1,6 +1,6 @@
 ---
 title: "Future Post"
-date: 2020-08-07
+date: 2099-12-31
 description: "Work in progress"
 type: "post"
 tags: [Python]
