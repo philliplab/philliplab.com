@@ -14,14 +14,6 @@ The following needs to be teased apart:
 - Using integer locations (.iloc)
 - Using Boolean arrays or comparison operations (also .loc)
 
-### Standard Python vs NumPy vs Pandas Indexing
-
-### Using the labels in the index(ex)
-
-### Using Integer locations
-
-### Using Boolean arrays or comparison operations
-
 #### More details related to .loc Pandas indexing - move to different post.
 
 For now, I believe the best ways to index are:
