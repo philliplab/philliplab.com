@@ -9,7 +9,7 @@ draft: true
 
 Merge or concat? Or join? Or append? Or concatenate? From the Pandas namespace or as a method on a dataframe? At first glance the various options for combining data in Pandas seems very confusing.
 
-Picking **which function** to use is actually fairly simple:
+Picking **which function** to use is fairly simple:
 
 - If you want to perform sql-style joins on two DataFrames, use `pd.merge`.
   - Both `df.merge` and `df.join` are convenience functions that just calls `pd.merge` under the hood.
@@ -22,7 +22,7 @@ Picking **which function** to use is actually fairly simple:
 Figuring out **which arguments** to pass to the function are more involved. All DataFrame combination tasks can be sub-divided according to the following criteria:
 
 - **Two or more:** Are you combining two dataframes or more than two dataframes?
-- **Align on rows or columns:** Do you want to align the dataframes on rows and then concatenate the rows? Or align the dataframes on columns and then concatenate the columns?
+- **Align on rows or columns:** Do you want to align the dataframes on rows and then concatenate the rows (add columns to the DataFrame)? Or align the dataframes on columns and then concatenate the columns (adding rows to the DataFrame)?
 - **Index or data values:** Do you want to perform the alignment using data in the DataFrame or the labels in the indices? or a mixture?
 
 ### Two or more?
@@ -36,6 +36,11 @@ If you want to combine more than two DataFrames, you will either need to:
 
 ### Align on rows or columns?
 
+
+
+{{< figure src="/join_inner_only.svg" title="Aligning by Rows" >}}
+
+{{< figure src="/union.svg" title="Aligning by Columns" >}}
 
 
 ### More
