@@ -38,17 +38,12 @@ If you want to combine more than two DataFrames, you will either need to:
 
 There are two ways to combine DataFrames:
 
-- **Align on rows:** You can align them so that their rows are in the same order and then 'transfer' the columns of the one into the other. The effect is that you make the rows longer by placing them side-by-side. This is demonstrated in the figure titled 'Aligning by Rows'.
-- **Align on columns:** Alternatively, you can align them so that their columns are in the same order and then 'transfer' the rows on the one into the other. The effect is that you make the columns longer by placing the one DataFrame 'on top of' the other. This is demonstrated in the figure titled 'Aligning by Columns'.
-
-#### Align on Rows
+- **Align on rows:** You can align them so that their rows are in the same order and then 'transfer' the columns of the one into the other. The effect is that you make the rows longer by placing them side-by-side. This is demonstrated in the figure titled 'Aligning by Rows'. These combinations of DataFrames are analogous to SQL joins and the purpose of **`pd.merge`** is to bring these powerful operations to Pandas.
+- **Align on columns:** Alternatively, you can align them so that their columns are in the same order and then 'transfer' the rows on the one into the other. The effect is that you make the columns longer by placing the one DataFrame 'on top of' the other. This is demonstrated in the figure titled 'Aligning by Columns'. These combinations are analogous to unions in SQL and are performed with the **`pd.concat`** function.
 
 {{< figure src="/join_inner_only.svg" title="Aligning by Rows" >}}
 
-One of the fundamental operations that RDBMS and SQL is used for is performing joins such as the one demonstrated in the figure above. The purpose of the `pd.merge` function is to bring these powerful operations to Pandas. Hence, you should use `pd.merge` when you want to combine DataFrames in this manner.
-
 {{< figure src="/union.svg" title="Aligning by Columns" >}}
-
 
 ### More Information
 
