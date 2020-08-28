@@ -7,15 +7,16 @@ tags: [Python]
 draft: true
 ---
 
-Always when I combine DataFrames, I feel nervous that the Panda police might come and arrest me for doing it wrong.
+When I combine DataFrames, I always feel nervous that the Panda police might arrest me for doing it wrong.
 
-Merge or concat? Or join? Or append? Or concatenate? From the Pandas namespace or as a method on a DataFrame? Once that is decided, you still have to decide which set of arguments to use.
+**Merge** or **concat**? Or **join**? Or **append**? Or **concatenate**? From the Pandas namespace or as a method on a DataFrame? Once that is decided, you still have to decide which set of arguments to use.
 
 This post aims to provide a framework for thinking about combining DataFrames and how to decide which approach to use.
 
-The only two functions you need are pd.merge and pd.concat:
-- df.join and df.merge are just convenience functions for calling pd.merge.
-- df.append is just a convenience function for calling pd.concat.
+The **only two functions you need** are `pd.merge` and `pd.concat`:
+- `df.join` and `df.merge` are just convenience functions for calling `pd.merge`.
+- `df.append` is just a convenience function for calling `pd.concat`.
+- `np.concatenate` is for Numpy arrays - it is a decoy - ignore it. [(Unless you want to do esoteric things)](https://stackoverflow.com/a/15582359)
 
 All the decisions that has to be made about combining DataFrames are determined by the answers to the following three questions:
 
@@ -49,13 +50,13 @@ Pandas terminology can be a little confusing here. The index contains the 'row n
 
 When aligning DataFrames so that their rows are in the same order, there are three options:
 
-- **Index:** You can consider the index, which contains the row names, or
-- **Data Values:** You can use the data values in some of the columns to align the rows, or
+- **Index:** You can use the index labels (row names), or
+- **Data Values:** You can use the data values in some of the columns, or
 - **Mixture:** Some mixture of the index labels and data values.
 
 Note that when aligning the columns, you can only use the column names - so you do not have to deal with this complexity.
 
-When aligning on rows, `pd.merge` is the weapon of choice so this decision affects which arguments of merge you will use. There are multiple ways to achieve any of these three effects:
+When aligning on rows, `pd.merge` is the weapon of choice so this decision affects which arguments of `pd.merge` you will use. There are multiple ways to achieve any of these three effects:
 
 #### Index
 
@@ -128,17 +129,5 @@ Finally, both pd.merge and pd.concat can perform all the operations describe in 
 
 [Union vs Join](https://stackoverflow.com/questions/905379/what-is-the-difference-between-join-and-union#:~:text=In%20a%20union%2C%20columns%20aren,tables%20into%20a%20single%20results.&text=Whereas%20a%20join%20is%20used,is%20used%20to%20combine%20rows.)
 
-# old
 
-Picking **which function** to use is fairly simple:
-
-- If you want to perform SQL-style joins on two DataFrames, use `pd.merge`.
-  - Both `df.merge` and `df.join` are convenience functions that just calls `pd.merge` under the hood.
-- If you want to do anything else, use `pd.concat`.
-  - `pd.append` is a convenience function that just calls `pd.concat` under the hood.
-  - `np.concatenate` is the numpy equivalent of `pd.concat`, ignore it.
-
-**So, `pd.merge` for SQL-style joins and `pd.concat` for everything else.**
-
-Figuring out **which arguments** to pass to the function are more involved. All DataFrame combination tasks can be sub-divided according to the following criteria:
 
