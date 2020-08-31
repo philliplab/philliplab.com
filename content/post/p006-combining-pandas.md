@@ -18,8 +18,9 @@ This first post will focus on **choosing which function** to use. The second pos
 ### From six to two
 
 The **only two functions you need** are `pd.merge` and `pd.concat`:
-- `df.join` and `df.merge` are just convenience functions for calling **`pd.merge`**.
+- `df.merge` is just convenience functions for calling **`pd.merge`**.
 - `df.append` is just a convenience function for calling **`pd.concat`**.
+- `df.join` is another convenience function. It calls either **`pd.merge`** or **`pd.concat`**.
 - `np.concatenate` is for Numpy arrays - it is a decoy - **ignore it**. [(Unless you want to do esoteric things)](https://stackoverflow.com/a/15582359)
 
 ### The fundamental question
