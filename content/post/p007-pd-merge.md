@@ -9,26 +9,33 @@ draft: true
 
 This is the second of four posts on combining DataFrames in Pandas.
 
-The first post explained which function to choose to join with. When joining DataFrames by placing them side-by-side you use the pd.merge function - the topic of this post.
+The first post explained which function to choose. When joining DataFrames by placing them side-by-side you use the `pd.merge` function - the topic of this post.
 
-The next post will discuss pd.concat and the fourth and final post will examine some alternative approaches.
+The next post will discuss `pd.concat` and the fourth and final post will examine some alternative approaches.
 
 ### Overview
 
 The purpose of `pd.merge` is to implement SQL-like JOIN functionality in Pandas. These operations align the rows of the two DataFrames and then `transfer` the columns between them resulting in a DataFrame that is wider than any of the input DataFrames.
 
-As of 2020-08-31, `pd.merge` has 13 parameters and some interact in non-trivial ways. It can be overwhelming to keep track of them without some kind of a model of how to think their purpose.
+As of 2020-08-31, `pd.merge` has 13 parameters and some interact in non-trivial ways. It can be overwhelming to keep track of them without a mental model of their purpose.
 
 The most important parameters are:
 - Inputs: The input parameters, and
 - What to align on: The parameters specifying which index levels / data columns to use to align the DataFrames.
-- How to handle mismatches: The how parameter that controls how mismatches between the two DataFrames should be resolved.
+- How to handle mismatches: The `how` parameter that controls how mismatches between the two DataFrames should be resolved.
 
 ### Input DataFrames
 
-pd.merge has a left and right parameter which are used to pass in the two DataFrames to join.
+`pd.merge` have a `left` and a `right` parameter which are used to pass in the two DataFrames to join.
 
-The df.merge and df.join methods basically just calls pd.merge with the left parameter set to the DataFrame on which the method was invoked. 
+The `df.merge` and `df.join` methods essentially calls `pd.merge` with the `left` parameter set to the DataFrame on which the method was invoked. 
+
+**HERE**
+Actually, this is not a good split - think about rather:
+- do the index level names and/or column names match between the DFs?
+- do you want to join on the entire index and only the index? Can you left_index and right_index if the names mismatch? #TODO run some tests here
+- do the names mismatch between the DFs?
+- now you are stuck with left_on and right_on
 
 ### What to align on
 
@@ -44,13 +51,15 @@ Each of these requires the use of a different subset of the parameters controlli
 
 Some of the levels of the index: 
 
-- If the index level names match between the DFs, use on and specify the levels.
-- If the index level names do not match, then use left_on and right_on to specify the names of the levels.
+- If the index level names match between the DFs, use `on` and specify the levels.
+- If the index level names do not match, then use `left_on` and `right_on` to specify the names of the levels.
 
 The entire index (all of the levels in the index):
 
-- You can use left_index = True and right_index = True
-- Just as above, you can also use the on argument and specify all the levels of the indexes
+- You can use `left_index` = True and `right_index` = True.
+- Just as above, you can also use the `on` argument and specify all the levels of the indexes.
+
+Thus you can use any of the five parameter
 
 #### Data Values
 
