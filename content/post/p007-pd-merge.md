@@ -1,21 +1,69 @@
 ---
-title: "pd.merge"
-date: 2020-08-30
+title: "JOINs in Pandas with pd.merge"
+date: 2020-08-31
 description: "Combining DataFrames by placing them side-by-side (SQL JOIN)"
 type: "post"
 tags: [Python]
 draft: true
 ---
 
-When I combine DataFrames, I always feel nervous that the Panda police might arrest me for doing it wrong.
+This is the second of four posts on combining DataFrames in Pandas.
 
-**Merge** or **concat**? Or **join**? Or **append**? Or **concatenate**? From the Pandas namespace or as a method on a DataFrame? Once that is decided, you still have to decide which set of arguments to use.
+The first post explained which function to choose to join with. When joining DataFrames by placing them side-by-side you use the pd.merge function - the topic of this post.
 
-The next few posts aim to provide a framework for thinking about combining DataFrames and how to decide which approach to use.
+The next post will discuss pd.concat and the fourth and final post will examine some alternative approaches.
 
-This post, the first post will focus on choosing which function to use. The second post will explore pd.merge and its swarm of parameters. Next pd.concat will be described in the thrid post. The final post of the series will demonstrate some alternative strategies for combining DataFrames.
+### Overview
 
-### From six to two
+The purpose of `pd.merge` is to implement SQL-like JOIN functionality in Pandas. These operations align the rows of the two DataFrames and then `transfer` the columns between them resulting in a DataFrame that is wider than any of the input DataFrames.
+
+As of 2020-08-31, `pd.merge` has 13 parameters and some interact in non-trivial ways. It can be overwhelming to keep track of them without some kind of a model of how to think their purpose.
+
+The most important parameters are:
+- Inputs: The input parameters, and
+- What to align on: The parameters specifying which index levels / data columns to use to align the DataFrames.
+- How to handle mismatches: The how parameter that controls how mismatches between the two DataFrames should be resolved.
+
+### Input DataFrames
+
+pd.merge has a left and right parameter which are used to pass in the two DataFrames to join.
+
+The df.merge and df.join methods basically just calls pd.merge with the left parameter set to the DataFrame on which the method was invoked. 
+
+### What to align on
+
+When aligning DataFrames so that their rows are in the same order, there are three options:
+
+- **Index:** You can use the index labels (row names), or
+- **Data Values:** You can use the data values in some of the columns, or
+- **Mixture:** Some mixture of the index labels and data values.
+
+Each of these requires the use of a different subset of the parameters controlling the alignment.
+
+#### Index
+
+Some of the levels of the index: 
+
+- If the index level names match between the DFs, use on and specify the levels.
+- If the index level names do not match, then use left_on and right_on to specify the names of the levels.
+
+The entire index (all of the levels in the index):
+
+- You can use left_index = True and right_index = True
+- Just as above, you can also use the on argument and specify all the levels of the indexes
+
+#### Data Values
+
+- If the column names match between the DFs, use the on argument and specify the column names.
+- If the column names do not match between the DFs, use the left_on and right_on arguments to specify the names of the levels.
+
+#### Mixture
+
+Using the on argument or the left_on and right_on arguments allows you to specify a mixture index levels and column names. The DFs will be aligned so that both the labels in the specified indexes AND the data values in the specified columns are aligned.
+
+If you want to use the whole index of one dataframe (say the left one) and a mixture of index levels and columns from the other dataframe (the right one), then you would use the left_index = True option together with a list of level names and column names passed to the right_on argument.
+
+ 
 
 The **only two functions you need** are `pd.merge` and `pd.concat`:
 - `df.join` and `df.merge` are just convenience functions for calling **`pd.merge`**.
