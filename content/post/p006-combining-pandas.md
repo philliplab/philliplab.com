@@ -1,19 +1,19 @@
 ---
 title: "Combining Pandas"
-date: 2020-08-26
+date: 2020-08-31
 description: "Combining datasets in Pandas"
 type: "post"
 tags: [Python]
-draft: true
+draft: false
 ---
 
-When I combine DataFrames, I always feel nervous that the Panda police might arrest me for doing it wrong.
+When I combine DataFrames, I always fear that the Panda police might arrest me for doing it wrong.
 
 **Merge** or **concat**? Or **join**? Or **append**? Or **concatenate**? From the Pandas namespace or as a method on a DataFrame? Once that is decided, you still have to decide which set of arguments to use.
 
 The next few posts aim to provide a framework for thinking about combining DataFrames and how to decide which approach to use.
 
-This post, the first post will focus on choosing which function to use. The second post will explore pd.merge and its swarm of parameters. Next pd.concat will be described in the thrid post. The final post of the series will demonstrate some alternative strategies for combining DataFrames.
+This first post will focus on **choosing which function** to use. The second post will explore `pd.merge` and its swarm of parameters. Next `pd.concat` will be described in the third post. The final post of the series will demonstrate alternative strategies.
 
 ### From six to two
 
@@ -22,15 +22,9 @@ The **only two functions you need** are `pd.merge` and `pd.concat`:
 - `df.append` is just a convenience function for calling **`pd.concat`**.
 - `np.concatenate` is for Numpy arrays - it is a decoy - **ignore it**. [(Unless you want to do esoteric things)](https://stackoverflow.com/a/15582359)
 
-All the decisions that has to be made about combining DataFrames are determined by the answers to the following three questions:
-
-- **Two or more:** Are you combining two DataFrames or more than two DataFrames?
-- **Align on rows or columns:** Do you want to align the DataFrames on rows and place them side-by-side? Or align the DataFrames on columns and place them on top of each other?
-- **Index or data values:** Do you want to perform the alignment using data in the DataFrame or the labels in the indices? Or a mixture?
-
 ### The fundamental question
 
-There are two ways to combine DataFrames: Horizontally or Vertically.
+There are two ways to combine DataFrames: **Horizontally or Vertically**. This determines the choice between `pd.merge` and `pd.concat`.
 
 #### Horizontal
 
@@ -40,7 +34,7 @@ To combine two DataFrames horizontally, align them so that their rows are in the
 
 The effect of this type of combination is that you make the rows longer by placing them side-by-side - i.e. result is wider than either of the input DataFrames. 
 
-Horizontal combinations of DataFrames are analogous to SQL JOINs and the purpose of **`pd.merge`** is to bring these powerful operations to Pandas.
+Horizontal combinations of DataFrames are **analogous to SQL JOINs** and the purpose of **`pd.merge`** is to bring these powerful operations to Pandas.
 
 If you want to combine DataFrames by placing them side-by-side, use **`pd.merge`**.
 
@@ -52,13 +46,13 @@ To combine two DataFrames vertically, align them so that their columns are in th
 
 Such combinations make the columns longer by placing the one DataFrame 'on top of' the other - i.e. the result is taller than either of the input DataFrames. 
 
-These combinations are analogous to UNIONS in SQL and are performed with the **`pd.concat`** function.
+These combinations are **analogous to UNIONS** in SQL and are performed with the **`pd.concat`** function.
 
 If you want to combine DataFrames by placing them on top of each other, use **`pd.concat`**.
 
 ### Potential confusion
 
-What if you want to align them by index instead of rows or columns?
+What if you want to align the DataFrames **by index** instead of rows or columns?
 
 Pandas terminology can be a little confusing here. The index contains the 'row names'. Thus aligning the indexes of two DataFrames will place their rows in the same order.
 
