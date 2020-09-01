@@ -9,7 +9,7 @@ draft: true
 
 This is the second of four posts on combining DataFrames in Pandas.
 
-The first post explained which function to choose. When joining DataFrames by placing them side-by-side you use the `pd.merge` function - the topic of this post.
+The [first post]({{< ref "p006-combining-pandas.md" >}}) explained which function to choose. When joining DataFrames by placing them side-by-side you use the `pd.merge` function - the topic of this post.
 
 The next post will discuss `pd.concat` and the fourth and final post will examine some alternative approaches.
 
