@@ -7,6 +7,8 @@ tags: [Python]
 draft: false
 ---
 
+This post is part of a series on [Climate Change]({{< ref "p010-weather-data-overview" >}}).
+
 The first step of any analysis project is obtaining the data and figuring out how to convert it into an analysable format. This post describes the first data source for the series on [Climate Insights]({{< ref "p010-weather-data-overview" >}}) and consists of two sections:
 1. **Data Source and Format** -  Description of the souce of the data and the format it is stored in.
 3. **Code** - Describe the Python code that reads the data and converts it into a appropriately shaped DataFrame.
