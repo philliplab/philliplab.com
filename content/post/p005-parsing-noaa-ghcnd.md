@@ -7,29 +7,13 @@ tags: [Python]
 draft: false
 ---
 
-The Global Historical Climatology Network (GHCND) provides high quality weather data for many weather stations around the globe over a long span of time. By inspecting these dataset one can answer **questions** such as:
-
-- Is there evidence that the climate is getting warmer?
-- Is the frequency of extreme weather events increasing?
-- How unusual is today's weather in my town?
-- What is the largest difference in temperatures ever recorded within 48 hours?
-
-Before any of these questions can be explored, we must first load the data into an analysis tool in a convenient format.
-
-**Post layout:** 
-
-1. **Data Source** - Describe and motivate the data selected from the GHCND source. 
-2. **Code** - Describe the Python code that processes the data.
-
+The first step of any analysis project is obtaining the data and figuring out how to convert it into an analysable format. This post describes the first data source for the series on [Climate Insights]({{< ref "p010-weather-data-overview" >}}) and consists of two sections:
+1. **Data Source and Format** -  Description of the souce of the data and the format it is stored in.
+3. **Code** - Describe the Python code that reads the data and converts it into a appropriately shaped DataFrame.
+ 
 ### Data Source
 
-The Global Historical Climatology Network provides an FTP server with many different datasets. These group the data in different ways and store them in different formats. For this post, I choose to focus on the data from a single station that is stored in fixed width format (FWF).
-
-The **motivations for this initial data choice** are: 
-
-- Long time series for a single location allows comparison of recent observations against the historical norms. (As opposed to comparisons between geographical locations).
-- Focussing on a single station keeps the dataset small enough that it can easily be analyzed in memory with short turn-around times. [Release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)
-- The FWF files are the most prominent ones on the FTP site.
+The Global Historical Climatology Network provides an FTP server with many different datasets. These group the data in different ways and store them in different formats. For this post, the focus is on the data from a single station that is stored in fixed width format (FWF).
 
 [Fixed Width Format Files](https://www.softinterface.com/Convert-XLS/Features/Fixed-Width-Text-File-Definition.htm): In FWF files, each row is represented by the same number of characters and the location of each column is the same in each row. Thus each data entry (cell) is padded with spaces to ensure that it is at the right location. This format has decreased in popularity in recent years, but is still in use in many long running projects. Fixed-width files can be accessed efficiently without loading it into memory by navigating to the byte on the hard drive where you know the cell you are interested in is located.
 
@@ -45,14 +29,14 @@ The station, metric, year and month descriptions define the rows, while the day 
 
 ### Code
 
-The code to load and parse a single station file is located in the load_station function. The main arguments are the station identifier and the folder containing the data.
+The code to load and parse a single station file is located in the `load_station` function for the `load_data.py` [script](https://github.com/philliplab/wda). The function provides parameters for specifying the station and folder containing the data.
 
-The two main parts are:
+The main parts of `load_station` are:
 
-- Constructing the column widths and headings arguments for pd.read_fwf
-- Transforming the data into long format with a one dimensional column index
+- Constructing the column widths and headings arguments for `pd.read_fwf`.
+- Transforming the data into long format with a one dimensional column index.
 
-#### Constructing the arguments for pd.read_fwf
+#### Constructing the arguments for `pd.read_fwf`
 
 List comprehensions provide a very convenient way to produce the specifications of the column names and column widths. First create a list with 31 repeats of the repeated column names or widths. Append this onto the names and widths of the non-repeated columns:
 
@@ -81,7 +65,7 @@ However, the data cannot be treated as such until the other description columns 
 dat.set_index(['station', 'year', 'month', 'metric'], inplace = True)
 ```
 
-Once this is performed, the structure of the column index can be specified:
+Once this is performed, the structure of the column index can be specified using a [list comprehension that mimics nested for loops]({{< ref "p003-comprehending-list-comprehensions" >}}):
 
 ```
 days_index = [k for j in [(i, i, i, i) for i in range(31)] for k in j]
