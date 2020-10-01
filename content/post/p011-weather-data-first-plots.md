@@ -1,10 +1,10 @@
 ---
 title: "First Weather Data Plots"
-date: 2020-09-02
+date: 2020-09-30
 description: "A closer look at the data of a single weather station"
 type: "post"
 tags: [Python]
-draft: false
+draft: true
 ---
 
 This post details a first look at the data from a single weather station. The goal is to gain basic familiarity with the structure of the data and to see if there are apparent issues or patterns.
